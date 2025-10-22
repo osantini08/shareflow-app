@@ -1,21 +1,42 @@
 import React from 'react';
-import { Cloud, Share2 } from 'lucide-react';
+import { Cloud, Upload, Link, FileText, Archive } from 'lucide-react';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
+  const location = useLocation();
+
+  const navItems = [
+    { path: '/', label: 'Upload Files', icon: Upload },
+    { path: '/url-shortener', label: 'URL Shortener', icon: Link },
+    { path: '/document-editor', label: 'Document Editor', icon: FileText },
+    { path: '/saved-documents', label: 'Saved Documents', icon: Archive }
+  ];
+
   return (
     <header className="header">
       <div className="header-container">
-        <div className="logo">
+        <RouterLink to="/" className="logo">
           <Cloud className="logo-icon" />
           <span className="logo-text">ShareFlow</span>
-        </div>
+        </RouterLink>
         
         <nav className="nav">
-          <button className="nav-button">
-            <Share2 size={18} />
-            Share
-          </button>
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = location.pathname === item.path;
+            
+            return (
+              <RouterLink
+                key={item.path}
+                to={item.path}
+                className={`nav-link ${isActive ? 'active' : ''}`}
+              >
+                <Icon size={18} />
+                <span>{item.label}</span>
+              </RouterLink>
+            );
+          })}
         </nav>
       </div>
     </header>
