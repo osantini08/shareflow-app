@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import Header from './components/Header';
+import Login from './components/Login';
+import PrivateRoute from './components/PrivateRoute';
 import FileUpload from './components/FileUpload';
 import FileList from './components/FileList';
 import UrlShortener from './components/UrlShortener';
@@ -62,17 +65,31 @@ function App() {
 
   return (
     <Router>
-      <div className="app">
-        <Header />
-        <main className="main-content">
+      <AuthProvider>
+        <div className="app">
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/url-shortener" element={<UrlShortener />} />
-            <Route path="/document-editor" element={<DocumentEditor />} />
-            <Route path="/saved-documents" element={<SavedDocuments />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/*"
+              element={
+                <PrivateRoute>
+                  <>
+                    <Header />
+                    <main className="main-content">
+                      <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/url-shortener" element={<UrlShortener />} />
+                        <Route path="/document-editor" element={<DocumentEditor />} />
+                        <Route path="/saved-documents" element={<SavedDocuments />} />
+                      </Routes>
+                    </main>
+                  </>
+                </PrivateRoute>
+              }
+            />
           </Routes>
-        </main>
-      </div>
+        </div>
+      </AuthProvider>
     </Router>
   );
 }
