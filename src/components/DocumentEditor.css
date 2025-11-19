@@ -1,0 +1,311 @@
+.document-editor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.documents-list-view {
+  width: 100%;
+}
+
+.documents-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin: 0 0 2rem 0;
+}
+
+.new-document-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.new-document-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.documents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.document-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.document-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.document-info {
+  margin-bottom: 1rem;
+}
+
+.document-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 0.5rem 0;
+}
+
+.document-meta {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0.25rem 0;
+}
+
+.document-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-button {
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+}
+
+.edit-button:hover {
+  background: rgba(34, 197, 94, 0.2);
+}
+
+.delete-button {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.delete-button:hover {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #6b7280;
+}
+
+.empty-icon {
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+/* Editor View Styles */
+.editor-view {
+  height: calc(100vh - 4rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+}
+
+.editor-title-section {
+  flex: 1;
+}
+
+.document-title-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 1.2rem;
+  font-weight: 600;
+  outline: none;
+}
+
+.editor-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}
+
+.save-button {
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.save-button:hover {
+  background: rgba(34, 197, 94, 0.2);
+}
+
+.download-button {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.download-button:hover {
+  background: rgba(59, 130, 246, 0.2);
+}
+
+.close-button {
+  background: rgba(107, 114, 128, 0.1);
+  color: #6b7280;
+}
+
+.close-button:hover {
+  background: rgba(107, 114, 128, 0.2);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.toolbar-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toolbar-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #1f2937;
+}
+
+.toolbar-separator {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 0 0.5rem;
+}
+
+.editor-container {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.editor-content {
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #1f2937;
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-y: auto;
+}
+
+.editor-content:focus {
+  outline: none;
+}
+
+.editor-content h1,
+.editor-content h2,
+.editor-content h3 {
+  margin: 1rem 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.editor-content p {
+  margin: 0.5rem 0;
+}
+
+.editor-content ul,
+.editor-content ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .document-editor {
+    padding: 1rem;
+  }
+  
+  .documents-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .editor-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .editor-actions {
+    margin-left: 0;
+    justify-content: center;
+  }
+  
+  .toolbar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import Header from './components/Header';
+import Login from './components/Login';
+import PrivateRoute from './components/PrivateRoute';
 import FileUpload from './components/FileUpload';
 import FileList from './components/FileList';
+import UrlShortener from './components/UrlShortener';
+import DocumentEditor from './components/DocumentEditor';
+import SavedDocuments from './components/SavedDocuments';
 import './styles/App.css';
 
 function App() {
@@ -31,34 +38,59 @@ function App() {
     });
   };
 
-  return (
-    <div className="app">
-      <Header />
-      <main className="main-content">
-        <div className="container">
-          <div className="upload-section">
-            <h1 className="hero-title">Share Files Effortlessly</h1>
-            <p className="hero-subtitle">
-              Upload, organize, and share your files securely with ShareFlow
-            </p>
-            <FileUpload onFilesUploaded={handleFilesUploaded} />
-          </div>
-          
-          {files.length > 0 && (
-            <div className="files-section">
-              <h2 className="section-title">Your Files</h2>
-              <FileList files={files} onDeleteFile={handleDeleteFile} />
-            </div>
-          )}
-          
-          {files.length === 0 && (
-            <div className="empty-state">
-              <p>No files uploaded yet. Start by uploading your first file!</p>
-            </div>
-          )}
+  const HomePage = () => (
+    <div className="container">
+      <div className="upload-section">
+        <h1 className="hero-title">Share Files Effortlessly</h1>
+        <p className="hero-subtitle">
+          Upload, organize, and share your files securely with ShareFlow
+        </p>
+        <FileUpload onFilesUploaded={handleFilesUploaded} />
+      </div>
+      
+      {files.length > 0 && (
+        <div className="files-section">
+          <h2 className="section-title">Your Files</h2>
+          <FileList files={files} onDeleteFile={handleDeleteFile} />
         </div>
-      </main>
+      )}
+      
+      {files.length === 0 && (
+        <div className="empty-state">
+          <p>No files uploaded yet. Start by uploading your first file!</p>
+        </div>
+      )}
     </div>
+  );
+
+  return (
+    <Router>
+      <AuthProvider>
+        <div className="app">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/*"
+              element={
+                <PrivateRoute>
+                  <>
+                    <Header />
+                    <main className="main-content">
+                      <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/url-shortener" element={<UrlShortener />} />
+                        <Route path="/document-editor" element={<DocumentEditor />} />
+                        <Route path="/saved-documents" element={<SavedDocuments />} />
+                      </Routes>
+                    </main>
+                  </>
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </div>
+      </AuthProvider>
+    </Router>
   );
 }
 
